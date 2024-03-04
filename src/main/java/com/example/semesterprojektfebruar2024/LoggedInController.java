@@ -1,6 +1,6 @@
 package com.example.semesterprojektfebruar2024;
 
-import dal.DbSql;
+import com.example.semesterprojektfebruar2024.DbSql;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -12,6 +12,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class LoggedInController implements Initializable {
+
     @FXML
     private Button btn_logout;
 
@@ -19,16 +20,16 @@ public class LoggedInController implements Initializable {
     private Label label_welcome;
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void initialize(URL url, ResourceBundle resourceBundle) {
         btn_logout.setOnAction(new EventHandler<ActionEvent>() {
             @Override
-            public void handle(ActionEvent event) {
-                DbSql.changeScene(event, "sample.fxml","Log in!",null);
+            public void handle(ActionEvent actionEvent) {
+                DbSql.changeScene(actionEvent, "sample.fxml", "Login", null);
             }
         });
     }
 
-    public void setUserInformation(String username) {
-        label_welcome.setText("Welcome " + username + "!");
+    public void setUserInfoForWelcome(String firstName, String lastName){
+        label_welcome.setText("Welcome " + firstName + " " + lastName + "!");
     }
 }

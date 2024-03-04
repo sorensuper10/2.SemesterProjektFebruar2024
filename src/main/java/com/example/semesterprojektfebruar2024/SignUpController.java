@@ -1,41 +1,51 @@
 package com.example.semesterprojektfebruar2024;
 
-import dal.DbSql;
+import com.example.semesterprojektfebruar2024.DbSql;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class SignUpController implements Initializable {
-
     @FXML
     private Button btn_signup;
+
     @FXML
     private Button btn_login;
+
     @FXML
-    private TextField tf_username;
+    private TextField txt_username;
+
     @FXML
-    private TextField tf_password;
+    private TextField txt_password;
+
+    @FXML
+    private TextField txt_fname;
+
+    @FXML
+    private TextField txt_lname;
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        ToggleGroup toggleGroup = new ToggleGroup();
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        txt_username.setFocusTraversable(false);
+        txt_password.setFocusTraversable(false);
+
         btn_signup.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                String toggleName = ((RadioButton) toggleGroup.getSelectedToggle()).getText();
-                if (!tf_username.getText().trim().isEmpty() && !tf_password.getText().trim().isEmpty()){
-                    DbSql.signUpUser(event, tf_username.getText(), tf_password.getText());
-                } else {
-                    System.out.println("Please fill in all information.");
+                if (!txt_username.getText().trim().isEmpty() && (!txt_password.getText().trim().isEmpty()))
+                    DbSql.signUpUser(event, txt_username.getText(), txt_password.getText());
+                else {
+                    System.out.println("Please fill in all information");
                     Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setContentText("Please fill in all information to sign up.");
+                    alert.setContentText("Please fill in all fields to sign up!");
                     alert.show();
-
                 }
             }
         });
@@ -43,7 +53,7 @@ public class SignUpController implements Initializable {
         btn_login.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                DbSql.changeScene(event, "sample.fxml","Log in",null);
+                DbSql.changeScene(event, "sample.fxml", "Login!", null);
             }
         });
     }

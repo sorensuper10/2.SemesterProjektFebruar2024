@@ -1,6 +1,6 @@
 package model;
 
-import dal.DbSql;
+import com.example.semesterprojektfebruar2024.DbSql;
 
 import java.util.ArrayList;
 

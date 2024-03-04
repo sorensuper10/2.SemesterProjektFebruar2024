@@ -1,8 +1,6 @@
-package dal;
+package com.example.semesterprojektfebruar2024;
 
-import com.example.semesterprojektfebruar2024.LoggedInController;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -13,7 +11,6 @@ import model.Appointment;
 import model.Customer;
 import model.Employee;
 import model.Login;
-import org.controlsfx.control.action.Action;
 
 import java.io.IOException;
 import java.sql.*;
@@ -307,23 +304,23 @@ public class DbSql {
         }
     }
 
-    public static void changeScene(ActionEvent event, String FXMLFile, String title, String username) {
+    public static void changeScene(ActionEvent event, String fxmlFile, String title, String userName) {
         Parent root = null;
 
-        if (username != null) {
+        if ((userName != null)) {
             try {
-                FXMLLoader loader = new FXMLLoader(DbSql.class.getClassLoader().getResource(FXMLFile));
-                root = loader.load();
-                LoggedInController lic = loader.getController();
-                lic.setUserInformation(username);
-            } catch (IOException e) {
-                e.printStackTrace();
+                FXMLLoader fxmlLoader = new FXMLLoader(DbSql.class.getResource(fxmlFile));
+                root = fxmlLoader.load();
+                LoggedInController loggedInController = fxmlLoader.getController();
+            }catch (Exception exception){
+                exception.printStackTrace();
             }
-        } else {
-            try {
-                root = FXMLLoader.load(DbSql.class.getResource(FXMLFile));
-            } catch (Exception e) {
-                e.printStackTrace();
+        }else {
+            try{
+                FXMLLoader fxmlLoader = new FXMLLoader(DbSql.class.getResource(fxmlFile));
+                root = fxmlLoader.load();
+            }catch (Exception exception){
+                exception.printStackTrace();
             }
         }
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -332,109 +329,118 @@ public class DbSql {
         stage.show();
     }
 
-    public static void signUpUser(ActionEvent event, String username, String password) {
+    public static void signUpUser(ActionEvent event, String username, String password){
         Connection connection = null;
-        PreparedStatement psInsert = null;
-        PreparedStatement psCheckUserExits = null;
+        PreparedStatement psinsert = null;
+        PreparedStatement pscheckUserExists = null;
         ResultSet resultSet = null;
+
         try {
-            psCheckUserExits = connection.prepareStatement("SELECT  * FROM Login where Username = ? ?");
-            psCheckUserExits.setString(1, username);
-            resultSet = psCheckUserExits.executeQuery();
+            connection = DriverManager.getConnection("jdbc:mysql://mysql35.unoeuro.com:3306/krudtraeven_dk_db_BookingSystem", "krudtraeven_dk", "w5F4be2mGrpnxk3BytDH");
+            pscheckUserExists = connection.prepareStatement("SELECT * FROM Login WHERE Username = ?");
+            pscheckUserExists.setString(1, username);
+            resultSet = pscheckUserExists.executeQuery();
 
-            if (resultSet.isBeforeFirst()) {
-                System.out.println("User already exists");
+            if (resultSet.isBeforeFirst()){
+                System.out.println("Username already taken.");
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setContentText("You cannot use this username.");
+                alert.setContentText("This username is taken!");
                 alert.show();
-            } else {
-                psInsert = connection.prepareStatement("INSERT INTO Login (Username, Password) VALUES(?, ?)");
-                psInsert.setString(1, username);
-                psInsert.setString(2, password);
-                psInsert.executeUpdate();
+            }else {
+                psinsert = connection.prepareStatement("INSERT INTO Login (Username, Password) VALUES (?, ?)");
+                psinsert.setString(1, username);
+                psinsert.setString(2, password);
+                psinsert.executeUpdate();
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setContentText("User Registration Successful!");
+                alert.show();
 
-                changeScene(event, "logged-in.fxml", "Welcome!", username);
+                //changeScene(event, "loggedin-view.fxml", "Welcome!", username);
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            if (resultSet != null) {
+        }catch (Exception exception){
+            exception.printStackTrace();
+        }finally {
+            if (resultSet != null){
                 try {
                     resultSet.close();
-                } catch (SQLException e) {
+                }catch (SQLException e){
                     e.printStackTrace();
                 }
             }
-            if (psCheckUserExits != null) {
+            if (pscheckUserExists != null){
                 try {
-                    psCheckUserExits.close();
-                } catch (SQLException e) {
+                    pscheckUserExists.close();
+                }catch (SQLException e){
                     e.printStackTrace();
                 }
             }
-            if (psInsert != null)
+            if (psinsert != null){
                 try {
-                    psInsert.close();
-                } catch (SQLException e) {
+                    psinsert.close();
+                }catch (SQLException e){
                     e.printStackTrace();
                 }
-        }
-        if (connection != null) {
-            try {
-                connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
+            }
+            if (connection != null){
+                try {
+                    connection.close();
+                }catch (SQLException e){
+                    e.printStackTrace();
+                }
             }
         }
     }
+
     public static void logInUser(ActionEvent event, String username, String password){
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         try{
-            preparedStatement = connection.prepareStatement("SELECT Password FROM Login WHERE Username = ?");
-            preparedStatement.setString(1, username);
+            connection = DriverManager.getConnection("jdbc:mysql://mysql35.unoeuro.com:3306/krudtraeven_dk_db_BookingSystem", "krudtraeven_dk", "w5F4be2mGrpnxk3BytDH");
+            preparedStatement = connection.prepareStatement("SELECT password FROM Login WHERE Username = ?");
+            preparedStatement.setString(1,username);
             resultSet = preparedStatement.executeQuery();
 
-            if(!resultSet.isBeforeFirst()) {
-                System.out.println("User not found in the database.");
+            if (!resultSet.isBeforeFirst()){
+                System.out.println("User not found in the database!");
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setContentText("Provided credentials are incorrect.");
+                alert.setContentText("Provided credentials are incorrect!");
                 alert.show();
-            } else {
-                while (resultSet.next()) {
-                    String retrievedPassword = resultSet.getString("Password");
-                    if (retrievedPassword.equals(password)) {
-                        changeScene(event, "logged-in.fxml","Welcome",username);
-                    } else {
-                        System.out.println("Password did not match.");
+            }else {
+                while (resultSet.next()){
+                    String retrievedPassword = resultSet.getString("password");
+                    if (retrievedPassword.equals(password)){
+                        changeScene(event, "logged-in.fxml", "Welcome!", username);
+                    }else {
+                        System.out.println("Password did not match!");
                         Alert alert = new Alert(Alert.AlertType.ERROR);
-                        alert.setContentText("Provided credentials are incorrect.");
+                        alert.setContentText("Provided credentials are incorrect!");
                         alert.show();
                     }
                 }
             }
-        } catch (SQLException e) {
+        }catch (Exception e){
             e.printStackTrace();
         } finally {
-            if (resultSet != null) {
+            if (resultSet != null){
                 try {
                     resultSet.close();
-                } catch (SQLException e) {
+                }catch (SQLException e){
                     e.printStackTrace();
                 }
             }
-            if (preparedStatement != null) {
+            if (preparedStatement != null){
                 try {
                     preparedStatement.close();
-                } catch (SQLException e) {
+                }catch (SQLException e){
                     e.printStackTrace();
                 }
             }
-            if (connection != null) {
+
+            if (connection != null){
                 try {
                     connection.close();
-                } catch (SQLException e) {
+                }catch (SQLException e){
                     e.printStackTrace();
                 }
             }
