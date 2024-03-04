@@ -19,7 +19,7 @@ import java.util.Calendar;
 import java.util.Scanner;
 
 public class DbSql {
-    private Connection connection;
+    private static Connection connection;
     private Statement stmt;
     private Statement stmt1;
 
@@ -75,7 +75,7 @@ public class DbSql {
         }
     }
 
-    public void createAppointment(Appointment a) {
+    public static void createAppointment(Appointment a) {
         try {
             String sql = "insert into Appointment (appointmentID , appointmentDate, appointmentTime, treatment, treatmentTime, appointmentAddress,employee,customer,createdat)";
             sql += "values (" + String.valueOf(a.getAppointmentID()) + ",'" + a.getAppointmentDate() + "','" + a.getAppointmentTime();

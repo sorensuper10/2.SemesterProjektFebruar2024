@@ -2,6 +2,7 @@ package model;
 
 import com.example.semesterprojektfebruar2024.DbSql;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 public class UseCase {
@@ -61,4 +62,10 @@ public class UseCase {
         DbSql db = new DbSql();
         db.expiredAppointments();
     }
+
+    /*public void createAppointmentgrafisk(int appointmentID, String appointmentdate,String appointmenttime, String treatment, String treatmentTime, String appointmentAddress, String employee, String customer, Timestamp createdat ) {
+        Appointment a = new Appointment(appointmentID,appointmentdate,appointmenttime,treatment,treatmentTime,appointmentAddress,employee,customer,createdat);
+        DbSql db = new DbSql();
+        db.bookAppointment(a);
+    }*/
 }
