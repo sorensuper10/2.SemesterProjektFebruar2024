@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.semesterprojektfebruar2024.searchAppointment">
+   <children>
+      <TextField fx:id="appointmentID" layoutX="270.0" layoutY="42.0" />
+      <TextField fx:id="createdat" layoutX="270.0" layoutY="341.0" prefHeight="26.0" prefWidth="150.0" />
+      <TextField fx:id="employee" layoutX="270.0" layoutY="304.0" />
+      <TextField fx:id="appointmentAddress" layoutX="270.0" layoutY="266.0" />
+      <TextField fx:id="treatment" layoutX="270.0" layoutY="200.0" />
+      <TextField fx:id="appointmentTime" layoutX="270.0" layoutY="159.0" />
+      <TextField fx:id="appointmentDate" layoutX="270.0" layoutY="119.0" />
+      <TextField fx:id="customer" layoutX="270.0" layoutY="77.0" />
+      <Label layoutX="47.0" layoutY="39.0" text="Insert AppointmentID">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="90.0" layoutY="75.0" text="Customer">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="90.0" layoutY="117.0" text="Date">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="90.0" layoutY="157.0" text="Time">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="90.0" layoutY="198.0" text="Treatment">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="90.0" layoutY="264.0" text="Address">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="90.0" layoutY="302.0" text="Employee">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="90.0" layoutY="337.0" text="Created at">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Button layoutX="475.0" layoutY="159.0" mnemonicParsing="false" onAction="#searchAppointmentGUI" text="Search" />
+      <Button layoutX="475.0" layoutY="328.0" mnemonicParsing="false" onAction="#backButtonLoggedIn" text="Back" />
+      <Label layoutX="86.0" layoutY="229.0" text="Treatment time">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <TextField fx:id="treatmentTime" layoutX="270.0" layoutY="231.0" />
+   </children>
+</AnchorPane>

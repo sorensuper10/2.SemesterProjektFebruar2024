@@ -29,8 +29,15 @@ public class LoggedInController implements Initializable {
         });
     }
 
-    public void setUserInfoForWelcome(String firstName, String lastName){
-        label_welcome.setText("Welcome " + firstName + " " + lastName + "!");
+    public void changeToBooking(ActionEvent actionEvent){
+        DbSql.changeScene(actionEvent,"appointment.fxml","Book",null);
+    }
+    public void searchAppointment(ActionEvent actionEvent){
+        DbSql.changeScene(actionEvent,"searchAppointment.fxml","Search",null);
     }
 
+    public void deleteAppointment(ActionEvent actionEvent){
+        DbSql.changeScene(actionEvent,"deleteAppointment.fxml","Delete",null);
+    }
 }
+

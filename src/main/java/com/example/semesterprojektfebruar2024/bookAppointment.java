@@ -55,6 +55,9 @@ public class bookAppointment implements Initializable {
     @FXML
     private TextField createdat;
 
+    @FXML
+    private Label appointmentCreated;
+
     public void dateTimePicker() {
 
     }
@@ -71,6 +74,15 @@ public class bookAppointment implements Initializable {
         dropdownemployee.getItems().addAll("Monika", "Søren", "Morten");
     }
 
+    @FXML
+    public void date() {
+        System.out.println(datePicker.getValue());
+    }
+
+    @FXML
+    public void time() {
+        System.out.println(dropdowntime.getValue());
+    }
 
     @FXML
     public void treatment() {
@@ -81,31 +93,33 @@ public class bookAppointment implements Initializable {
     public void employee() {
         System.out.println(dropdownemployee.getValue());
     }
-    /*@FXML
+    @FXML
     protected void onOpretBookClickIBook() {
         UseCase u = new UseCase();
         Appointment a = new Appointment();
-        String appointmentIDText = appointmentID.getText();
-        String appointmentDateText = appointmentDate.getText();
-        String appointmentTimeText = appointmentTime.getText();
-        String treatmentText = treatment.getText();
-        String treatmentTimeText = treatmentTime.getText();
-        String appointmentAddressText = appointmentAddress.getText();
-        String employeeText = employee.getText();
-        String customerText = customer.getText();
-        String createdatText = createdat.getText();
-        int aID = Integer.parseInt(appointmentIDText);
-        u.createAppointmentgrafisk(aID,appointmentDateText,appointmentTimeText,treatmentText,treatmentTimeText,appointmentAddressText,employeeText,customerText,createdatText);
-        a.setAppointmentID(aID);
+        //String appointmentIDText = appointmentID.getText();
+        String appointmentDateText = datePicker.getAccessibleText();
+        String appointmentTimeText = dropdowntime.getAccessibleText();
+        String treatmentText = dropdowntreatment.getAccessibleText();
+        //String treatmentTimeText = treatmentTime.getText();
+        //String appointmentAddressText = appointmentAddress.getText();
+        String employeeText = dropdownemployee.getAccessibleText();
+        //String customerText = customer.getText();
+        //String createdatText = createdat.getText();
+        //int aID = Integer.parseInt(appointmentIDText);
+        u.createAppointmentGUI(appointmentDateText,appointmentTimeText,treatmentText,employeeText);
+        //a.setAppointmentID(aID);
         a.setAppointmentDate(appointmentDateText);
         a.setAppointmentTime(appointmentTimeText);
         a.setTreatment(treatmentText);
-        a.setTreatmentTime(treatmentTimeText);
-        a.setAppointmentAddress(appointmentAddressText);
+        //a.setTreatmentTime(treatmentTimeText);
+        //a.setAppointmentAddress(appointmentAddressText);
         a.setEmployeename(employeeText);
-        a.setCustomername(customerText);
-        a.setCreatedat(createdatText);
-        studerendeOprettet.setText("Studerende er oprettet");
-    }*/
+        //a.setCustomername(customerText);
+        appointmentCreated.setText("Appointment has been booked.");
+    }
+    public void backButtonLoggedIn(ActionEvent actionEvent){
+        DbSql.changeScene(actionEvent,"logged-in.fxml","Back",null);
+    }
 }
 

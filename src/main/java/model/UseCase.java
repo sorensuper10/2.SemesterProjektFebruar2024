@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class UseCase {
 
-    public void createLogin(Login l){
+    public void createLogin(Login l) {
         DbSql db = new DbSql();
         db.createLogin(l);
     }
@@ -16,6 +16,7 @@ public class UseCase {
         DbSql db = new DbSql();
         db.createEmployee(e);
     }
+
     public void createCustomer(Customer c) {
         DbSql db = new DbSql();
         db.createCustomer(c);
@@ -35,13 +36,15 @@ public class UseCase {
         DbSql db = new DbSql();
         db.editAppointment();
     }
-    public ArrayList getAllAppointments(){
+
+    public ArrayList getAllAppointments() {
         ArrayList<Appointment> appointments;
         DbSql db = new DbSql();
         appointments = db.getAllAppointments();
         return appointments;
     }
-    public Appointment getOneAppointment(int appointmentID){
+
+    public Appointment getOneAppointment(int appointmentID) {
         Appointment a;
         DbSql db = new DbSql();
         a = db.getOneAppointment(appointmentID);
@@ -55,7 +58,7 @@ public class UseCase {
 
     public void bookAppointment(int appointmentID, String appointmentDate, String appointmentTime, String treatment, String treatmentTime, String appointmentAddress, String employeename, String customername) {
         DbSql db = new DbSql();
-        db.bookAppointment(appointmentID,appointmentDate,appointmentTime,treatment,treatmentTime,appointmentAddress,employeename,customername);
+        db.bookAppointment(appointmentID, appointmentDate, appointmentTime, treatment, treatmentTime, appointmentAddress, employeename, customername);
     }
 
     public void expiredAppointments() {
@@ -63,9 +66,20 @@ public class UseCase {
         db.expiredAppointments();
     }
 
-    /*public void createAppointmentgrafisk(int appointmentID, String appointmentdate,String appointmenttime, String treatment, String treatmentTime, String appointmentAddress, String employee, String customer, Timestamp createdat ) {
-        Appointment a = new Appointment(appointmentID,appointmentdate,appointmenttime,treatment,treatmentTime,appointmentAddress,employee,customer,createdat);
+    public void createAppointmentGUI(String appointmentdate, String appointmentTime, String treatment, String employeename ) {
+        Appointment a = new Appointment(appointmentdate, appointmentTime, treatment, employeename);
         DbSql db = new DbSql();
-        db.bookAppointment(a);
-    }*/
+        db.bookAppointmentGUI(a);
+    }
+    public Appointment searchAppointmentGUI(int appointmentID) {
+        Appointment a;
+        DbSql db = new DbSql();
+        a = db.getOneAppointment(appointmentID);
+        return a;
+    }
+
+    public void deleteAppointmentGUI(int appointmentID) {
+        DbSql db = new DbSql();
+        db.deleteAppointment(appointmentID);
+    }
 }

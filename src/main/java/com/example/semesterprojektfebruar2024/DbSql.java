@@ -210,6 +210,9 @@ public class DbSql {
                 a.setTreatment(rs.getString("treatment"));
                 a.setTreatmentTime(rs.getString("treatmentTime"));
                 a.setAppointmentAddress(rs.getString("appointmentAddress"));
+                a.setEmployeename(rs.getString("employee"));
+                a.setCustomername(rs.getString("customer"));
+                a.setT(rs.getTimestamp("createdat"));
                 return a;
 
             }
@@ -266,6 +269,19 @@ public class DbSql {
         }
     }
 
+    public void bookAppointmentGUI(Appointment a) {
+        try {
+            String sql = "INSERT INTO AppointmentGUI (appointmentDate, appointmentTime,treatment,employee)";
+            sql += "values (" + (a.getAppointmentDate()) + ",'" + a.getAppointmentTime() + "','" + a.getTreatment();
+            sql += "','" + a.getEmployeename() + "')";
+            Statement stmt = connection.createStatement();
+            stmt.execute(sql);
+            stmt.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
     public void expiredAppointments() {
         String query = "SELECT * FROM Appointment";
         try (Statement stmt = connection.createStatement()) {
@@ -274,8 +290,8 @@ public class DbSql {
                 // Get the creation date for each row as an integer (assuming the date field is named "creation_date")
                 int creationDate = rs.getInt("appointmentID");
 
-                // Check if the creation date is older than 10 seconds
-                if (isOlderThanSeconds(creationDate, 30)) {
+                // Check if the creation date is older than 5 years
+                if (isOlderThanSeconds(creationDate, 157784630)) {
                     // Delete the row
                     int id = rs.getInt("appointmentID"); // assuming ID is a unique identifier
                     deleteRow(connection);

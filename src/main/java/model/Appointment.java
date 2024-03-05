@@ -40,6 +40,13 @@ public class Appointment {
         this.customername = customername;
     }
 
+    public Appointment(String appointmentDate, String appointmentTime, String treatment, String employeename) {
+        this.appointmentDate = appointmentDate;
+        this.appointmentTime = appointmentTime;
+        this.treatment = treatment;
+        this.employeename = employeename;
+    }
+
     public Customer getC() {
         return c;
     }

@@ -24,6 +24,7 @@ public class Main {
         System.out.println("11. Delete appointment");
         System.out.println("12. Book appointment");
         System.out.println("13. Delete appointments after 30 seconds");
+        System.out.println("14. Search and edit appointment");
 
         DbSql db = new DbSql();
         UseCase u = new UseCase();
@@ -106,7 +107,11 @@ public class Main {
                     break;
                 case 13:
                     u.expiredAppointments();
-                    System.out.println("Appointments older than 30 seconds has been deleted");
+                    System.out.println("Appointments older than 5 years has been deleted");
+                    break;
+                case 14:
+                    EditAppointment.main(args);
+                    break;
                 default:
                     System.exit(0);
             }

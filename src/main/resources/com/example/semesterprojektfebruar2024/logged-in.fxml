@@ -7,9 +7,10 @@
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.semesterprojektfebruar2024.LoggedInController">
    <children>
       <Label fx:id="label_welcome" layoutX="262.0" layoutY="77.0" prefHeight="18.0" prefWidth="63.0" text="Welcome" />
-      <Button fx:id="btn_logout" layoutX="449.0" layoutY="282.0" mnemonicParsing="false" text="Logout" />
-      <Button fx:id="btn_logout1" layoutX="234.0" layoutY="122.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="130.0" text="Book appointment" />
-      <Button fx:id="btn_logout11" layoutX="234.0" layoutY="225.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="130.0" text="Delete appointment" />
-      <Button fx:id="btn_logout12" layoutX="235.0" layoutY="173.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="129.0" text="Search appointment" />
+      <Button fx:id="btn_logout" layoutX="455.0" layoutY="304.0" mnemonicParsing="false" text="Logout" />
+      <Button layoutX="234.0" layoutY="122.0" mnemonicParsing="false" onAction="#changeToBooking" prefHeight="26.0" prefWidth="130.0" text="Book appointment" />
+      <Button layoutX="234.0" layoutY="225.0" mnemonicParsing="false" onAction="#deleteAppointment" prefHeight="26.0" prefWidth="130.0" text="Delete appointment" />
+      <Button layoutX="235.0" layoutY="173.0" mnemonicParsing="false" onAction="#searchAppointment" prefHeight="26.0" prefWidth="129.0" text="Search appointment" />
+      <Button layoutX="234.0" layoutY="277.0" mnemonicParsing="false" onAction="#deleteAppointment" prefHeight="26.0" prefWidth="130.0" text="Edit appointment" />
    </children>
 </AnchorPane>
