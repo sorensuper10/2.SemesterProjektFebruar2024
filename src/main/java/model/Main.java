@@ -16,16 +16,17 @@ public class Main {
         System.out.println("3. Create Customer");
         System.out.println("4. Create Appointment");
         System.out.println("5. Edit Login");
-        System.out.println("6. Edit Employee");
-        System.out.println("7. Edit Customer");
-        System.out.println("8. Edit Appointment");
-        System.out.println("9. Get all appointments");
-        System.out.println("10. Search one appointment");
-        System.out.println("11. Delete appointment");
-        System.out.println("12. Book appointment");
-        System.out.println("13. Delete appointments after 30 seconds");
-        System.out.println("14. Search and edit appointment");
-        System.out.println("15. Check if appointment is double booked in Database");
+        System.out.println("6. Edit Appointment");
+        System.out.println("7. Get all appointments");
+        System.out.println("8. Search one appointment");
+        System.out.println("9. Delete appointment");
+        System.out.println("10. Book appointment");
+        System.out.println("11. Delete appointments after 30 seconds");
+        System.out.println("12. Search and edit appointment");
+        System.out.println("13. Check if appointment is double booked in Database");
+
+        //System.out.println("6. Edit Employee");
+        //System.out.println("7. Edit Customer");
 
         DbSql db = new DbSql();
         UseCase u = new UseCase();
@@ -63,25 +64,25 @@ public class Main {
                     u.editLogin();
                     System.out.println("Login has been changed");
                     break;
-                case 8:
+                case 6:
                     u.editAppointment();
                     System.out.println("Appointment has been changed");
                     break;
-                case 9:
+                case 7:
                     ArrayList<Appointment> appointments;
                     appointments = u.getAllAppointments();
                     for (int i = 0; i < appointments.size(); i++) {
                         System.out.println(appointments.get(i));
                     }
                     break;
-                case 10:
+                case 8:
                     System.out.println(u.getOneAppointment(1));
                     break;
-                case 11:
+                case 9:
                     u.deleteAppointment(3);
                     System.out.println("Appointment has been deleted");
                     break;
-                case 12:
+                case 10:
                     System.out.print("Submit ID");
                     int appointmentID = input.nextInt();
                     input.nextLine();
@@ -101,14 +102,14 @@ public class Main {
                     String customername = input.nextLine();
                     u.bookAppointment(appointmentID,appointmentDate,appointmentTime, treatment,treatmentTime,appointmentAddress,employeeName,customername);
                     break;
-                case 13:
+                case 11:
                     u.expiredAppointments();
                     System.out.println("Appointments older than 5 years has been deleted");
                     break;
-                case 14:
+                case 12:
                     EditAppointment.main(args);
                     break;
-                case 15:
+                case 13:
                     db.createAppointment1(a);
                     break;
                 default:
