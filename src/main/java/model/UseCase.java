@@ -66,8 +66,7 @@ public class UseCase {
         db.expiredAppointments();
     }
 
-    public void createAppointmentGUI(String appointmentdate, String appointmentTime, String treatment, String employeename ) {
-        Appointment a = new Appointment(appointmentdate, appointmentTime, treatment, employeename);
+    public void createAppointmentGUI(Appointment a) {
         DbSql db = new DbSql();
         db.bookAppointmentGUI(a);
     }

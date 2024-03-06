@@ -270,9 +270,10 @@ public class DbSql {
     }
 
     public void bookAppointmentGUI(Appointment a) {
+        System.out.println(a);
         try {
             String sql = "INSERT INTO AppointmentGUI (appointmentDate, appointmentTime,treatment,employee)";
-            sql += "values (" + (a.getAppointmentDate()) + ",'" + a.getAppointmentTime() + "','" + a.getTreatment();
+            sql += "values (" + (a.getDate()) + ",'" + a.getTime() + "','" + a.getTreatment();
             sql += "','" + a.getEmployeename() + "')";
             Statement stmt = connection.createStatement();
             stmt.execute(sql);

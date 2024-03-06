@@ -10,6 +10,9 @@ import model.UseCase;
 import org.w3c.dom.Text;
 
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 public class bookAppointment implements Initializable {
@@ -95,9 +98,49 @@ public class bookAppointment implements Initializable {
     }
     @FXML
     protected void onOpretBookClickIBook() {
+        //UseCase u = new UseCase();
+        /*LocalDate l = (LocalDate) datePicker.getValue();
+        LocalTime lt = LocalTime.parse((CharSequence) dropdowntime.getValue());
+        String treatment = dropdowntreatment.getValue();
+        String employee = dropdownemployee.getValue();
+        System.out.println(l);
+        System.out.println(lt);
+        System.out.println(treatment);
+        System.out.println(employee);
+        Appointment a = new Appointment(l,lt,treatment,employee);
+        u.createAppointmentGUI(a);
+
+
+      */
         UseCase u = new UseCase();
-        Appointment a = new Appointment();
-        //String appointmentIDText = appointmentID.getText();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd"); // Definerer formatter med det ønskede format
+        LocalDate l = datePicker.getValue(); // Casting er ikke nødvendig her
+        String formattedDate = l.format(formatter); // Anvender formatter til at formatere datoen
+        LocalTime lt = LocalTime.parse(dropdowntime.getValue().toString()); // Antager at dropdowntime.getValue() returnerer en String, casting til CharSequence er ikke nødvendig
+        String treatment = dropdowntreatment.getValue();
+        String employee = dropdownemployee.getValue();
+        System.out.println(formattedDate); // Udskriver den formaterede dato
+        System.out.println(lt);
+        System.out.println(treatment);
+        System.out.println(employee);
+        System.out.println(formattedDate);
+        Appointment a = new Appointment(formattedDate, String.valueOf(lt), treatment, employee);
+        //System.out.println(a);
+        u.createAppointmentGUI(a);
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /*//String appointmentIDText = appointmentID.getText();
         String appointmentDateText = datePicker.getAccessibleText();
         String appointmentTimeText = dropdowntime.getAccessibleText();
         String treatmentText = dropdowntreatment.getAccessibleText();
@@ -116,7 +159,7 @@ public class bookAppointment implements Initializable {
         //a.setAppointmentAddress(appointmentAddressText);
         a.setEmployeename(employeeText);
         //a.setCustomername(customerText);
-        appointmentCreated.setText("Appointment has been booked.");
+        appointmentCreated.setText("Appointment has been booked.");*/
     }
     public void backButtonLoggedIn(ActionEvent actionEvent){
         DbSql.changeScene(actionEvent,"logged-in.fxml","Back",null);

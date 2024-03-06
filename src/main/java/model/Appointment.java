@@ -1,6 +1,8 @@
 package model;
 
 import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class Appointment {
 
@@ -16,6 +18,34 @@ public class Appointment {
     private String customername;
 
     private Timestamp t;
+
+    private LocalDate date;
+
+    private LocalTime time;
+
+    public Employee getE() {
+        return e;
+    }
+
+    public void setE(Employee e) {
+        this.e = e;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public LocalTime getTime() {
+        return time;
+    }
+
+    public void setTime(LocalTime time) {
+        this.time = time;
+    }
 
     public Appointment(int appointmentID, String appointmentDate, String appointmentTime, String treatment, String treatmentTime, String appointmentAddress, String employeename, String customername, Timestamp t) {
         this.appointmentID = appointmentID;
@@ -43,6 +73,13 @@ public class Appointment {
     public Appointment(String appointmentDate, String appointmentTime, String treatment, String employeename) {
         this.appointmentDate = appointmentDate;
         this.appointmentTime = appointmentTime;
+        this.treatment = treatment;
+        this.employeename = employeename;
+    }
+
+    public Appointment(LocalDate date, LocalTime time, String treatment, String employeename) {
+        this.date = date;
+        this.time = time;
         this.treatment = treatment;
         this.employeename = employeename;
     }
