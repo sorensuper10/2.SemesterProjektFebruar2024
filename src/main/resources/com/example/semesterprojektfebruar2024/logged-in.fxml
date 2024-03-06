@@ -11,6 +11,5 @@
       <Button layoutX="234.0" layoutY="122.0" mnemonicParsing="false" onAction="#changeToBooking" prefHeight="26.0" prefWidth="130.0" text="Book appointment" />
       <Button layoutX="234.0" layoutY="225.0" mnemonicParsing="false" onAction="#deleteAppointment" prefHeight="26.0" prefWidth="130.0" text="Delete appointment" />
       <Button layoutX="235.0" layoutY="173.0" mnemonicParsing="false" onAction="#searchAppointment" prefHeight="26.0" prefWidth="129.0" text="Search appointment" />
-      <Button layoutX="234.0" layoutY="277.0" mnemonicParsing="false" onAction="#deleteAppointment" prefHeight="26.0" prefWidth="130.0" text="Edit appointment" />
    </children>
 </AnchorPane>

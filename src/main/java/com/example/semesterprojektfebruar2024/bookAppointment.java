@@ -26,7 +26,13 @@ public class bookAppointment implements Initializable {
     private ComboBox<String> dropdowntreatment;
 
     @FXML
+    private ComboBox<String> dropdowntreatmenttime;
+
+    @FXML
     private ComboBox<String> dropdownemployee;
+
+    @FXML
+    private TextField costumer;
 
     @FXML
     private Button book;
@@ -74,7 +80,8 @@ public class bookAppointment implements Initializable {
             }
         }
         dropdowntreatment.getItems().addAll("Cut hair", "Wash hair", "Shaving");
-        dropdownemployee.getItems().addAll("Monika", "Søren", "Morten");
+        dropdownemployee.getItems().addAll("Monika", "SuperSøren", "Morten");
+        dropdowntreatmenttime.getItems().addAll("10 min", "15 min", "20 min", "30 min");
     }
 
     @FXML
@@ -93,8 +100,19 @@ public class bookAppointment implements Initializable {
     }
 
     @FXML
+    public void treatmentTime() {
+        System.out.println(dropdowntreatmenttime.getValue());
+    }
+
+    @FXML
     public void employee() {
         System.out.println(dropdownemployee.getValue());
+    }
+
+    @FXML
+    public void customer() {
+        System.out.println(costumer.getText());
+
     }
     @FXML
     protected void onOpretBookClickIBook() {
@@ -118,13 +136,17 @@ public class bookAppointment implements Initializable {
         String formattedDate = l.format(formatter); // Anvender formatter til at formatere datoen
         LocalTime lt = LocalTime.parse(dropdowntime.getValue().toString()); // Antager at dropdowntime.getValue() returnerer en String, casting til CharSequence er ikke nødvendig
         String treatment = dropdowntreatment.getValue();
+        String treatmenttime = dropdowntreatmenttime.getValue();
         String employee = dropdownemployee.getValue();
+        String customer = costumer.getText();
         System.out.println(formattedDate); // Udskriver den formaterede dato
         System.out.println(lt);
         System.out.println(treatment);
+        System.out.println(treatmenttime);
         System.out.println(employee);
         System.out.println(formattedDate);
-        Appointment a = new Appointment(formattedDate, String.valueOf(lt), treatment, employee);
+        System.out.println(customer);
+        Appointment a = new Appointment(formattedDate, String.valueOf(lt), treatment, treatmenttime, employee,customer);
         //System.out.println(a);
         u.createAppointmentGUI(a);
 

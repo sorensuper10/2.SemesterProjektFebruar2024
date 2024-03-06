@@ -8,7 +8,10 @@ import model.Appointment;
 import model.UseCase;
 
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Formatter;
 import java.util.ResourceBundle;
 
 public class searchAppointment implements Initializable {
@@ -42,7 +45,6 @@ public class searchAppointment implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
     }
 
     public void backButtonLoggedIn(ActionEvent actionEvent) {
@@ -63,9 +65,11 @@ public class searchAppointment implements Initializable {
         appointmentAddress.setText(a.getAppointmentAddress());
         employee.setText(a.getEmployeename());
         customer.setText(a.getCustomername());
-        String t = String.valueOf(a.getT());
+        // Opret et SimpleDateFormat-objekt med det ønskede format
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        // Formatér timestampen og udskriv resultatet
+        String formattedTimestamp = sdf.format(a.getT());
+        String t = String.valueOf(formattedTimestamp);
         createdat.setText(t);
     }
 }
-
-

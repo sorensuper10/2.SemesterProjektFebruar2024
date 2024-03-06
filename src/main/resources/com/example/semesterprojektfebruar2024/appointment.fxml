@@ -22,12 +22,14 @@
       <ComboBox fx:id="dropdowntreatment" layoutX="308.0" layoutY="200.0" onAction="#treatment" prefWidth="150.0" />
       <Text layoutX="189.0" layoutY="167.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose a time" />
       <Text layoutX="174.0" layoutY="217.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose a treatment" />
-      <ComboBox fx:id="dropdownemployee" layoutX="308.0" layoutY="252.0" onAction="#employee" prefWidth="150.0" />
-      <Text layoutX="174.0" layoutY="269.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose a employee" />
+      <ComboBox fx:id="dropdownemployee" layoutX="308.0" layoutY="285.0" onAction="#employee" prefWidth="150.0" />
+      <Text layoutX="174.0" layoutY="302.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose a employee" />
       <Button layoutX="483.0" layoutY="340.0" mnemonicParsing="false" onAction="#onOpretBookClickIBook" text="Book" />
-      <Button layoutX="81.0" layoutY="328.0" mnemonicParsing="false" onAction="#backButtonLoggedIn" text="Back" />
-      <Label fx:id="appointmentCreated" layoutX="355.0" layoutY="349.0" prefHeight="0.0" prefWidth="0.0" text="Label" />
-      <Label layoutX="175.0" layoutY="296.0" prefHeight="18.0" prefWidth="116.0" text="Write customername" />
-      <TextField layoutX="309.0" layoutY="293.0" />
+      <Button layoutX="40.0" layoutY="327.0" mnemonicParsing="false" onAction="#backButtonLoggedIn" text="Back" />
+      <Label fx:id="appointmentCreated" layoutX="341.0" layoutY="366.0" prefHeight="1.0" prefWidth="0.0" text="Label" />
+      <Label layoutX="174.0" layoutY="330.0" prefHeight="18.0" prefWidth="116.0" text="Write customername" />
+      <TextField fx:id="costumer" layoutX="308.0" layoutY="326.0" onAction="#customer" />
+      <Text layoutX="173.0" layoutY="258.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose treatmenttime" />
+      <ComboBox fx:id="dropdowntreatmenttime" layoutX="308.0" layoutY="241.0" onAction="#treatmentTime" prefWidth="150.0" />
    </children>
 </AnchorPane>

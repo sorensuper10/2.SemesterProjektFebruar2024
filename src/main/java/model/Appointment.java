@@ -22,30 +22,6 @@ public class Appointment {
 
     private LocalTime time;
 
-    public Employee getE() {
-        return e;
-    }
-
-    public void setE(Employee e) {
-        this.e = e;
-    }
-
-    public LocalDate getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-
-    public LocalTime getTime() {
-        return time;
-    }
-
-    public void setTime(LocalTime time) {
-        this.time = time;
-    }
-
     public Appointment(int appointmentID, String appointmentDate, String appointmentTime, String treatment, String treatmentTime, String appointmentAddress, String employeename, String customername, Timestamp t) {
         this.appointmentID = appointmentID;
         this.appointmentDate = appointmentDate;
@@ -101,6 +77,23 @@ public class Appointment {
         this.treatment = treatment;
         this.treatmentTime = treatmentTime;
         this.appointmentAddress = appointmentAddress;
+    }
+
+    public Appointment(String appointmentDate, String appointmentTime, String treatment, String treatmentTime, String employeename, String customername) {
+        this.appointmentDate = appointmentDate;
+        this.appointmentTime = appointmentTime;
+        this.treatment = treatment;
+        this.treatmentTime = treatmentTime;
+        this.employeename = employeename;
+        this.customername = customername;
+    }
+
+    public Appointment(String appointmentDate, String appointmentTime, String treatment, String employeename, String customername) {
+        this.appointmentDate = appointmentDate;
+        this.appointmentTime = appointmentTime;
+        this.treatment = treatment;
+        this.employeename = employeename;
+        this.customername = customername;
     }
 
     public Customer getC() {
@@ -186,17 +179,42 @@ public class Appointment {
         this.appointmentAddress = appointmentAddress;
     }
 
+    public Employee getE() {
+        return e;
+    }
+
+    public void setE(Employee e) {
+        this.e = e;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public LocalTime getTime() {
+        return time;
+    }
+
+    public void setTime(LocalTime time) {
+        this.time = time;
+    }
+
     @Override
     public String toString() {
         return "Appointment{" +
                 "appointmentID=" + appointmentID +
                 ", appointmentDate='" + appointmentDate + '\'' +
                 ", appointmentTime='" + appointmentTime + '\'' +
-                ", appointmentAddress='" + appointmentAddress + '\'' +
                 ", treatment='" + treatment + '\'' +
                 ", treatmentTime='" + treatmentTime + '\'' +
+                ", appointmentAddress='" + appointmentAddress + '\'' +
                 ", employeename='" + employeename + '\'' +
                 ", customername='" + customername + '\'' +
+                ", t=" + t +
                 '}';
     }
 }

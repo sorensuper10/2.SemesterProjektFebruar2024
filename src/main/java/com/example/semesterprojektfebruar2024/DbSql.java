@@ -7,19 +7,15 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
-import model.Appointment;
-import model.Customer;
-import model.Employee;
-import model.Login;
+import model.*;
 
-import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Scanner;
 
 public class DbSql {
-    private static Connection connection;
+    public static Connection connection;
     private Statement stmt;
     private Statement stmt1;
 
@@ -86,6 +82,39 @@ public class DbSql {
             stmt.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
+        }
+    }
+    public void createAppointment1(Appointment a) {
+        try {
+            if (!checkForDoubleBooking(a.getAppointmentDate(), a.getAppointmentTime(), a.getEmployeename())) {
+                String sql = "insert into AppointmentGUI (appointmentID , appointmentDate, appointmentTime, treatment, treatmentTime,employee,customer)";
+                sql += "values (" + String.valueOf(a.getAppointmentID()) + ",'" + a.getAppointmentDate() + "','" + a.getAppointmentTime();
+                sql += "','" + a.getTreatment() + "','" + a.getTreatmentTime() + "','";
+                sql += a.getEmployeename() + "','" + a.getCustomername() + "')";
+                Statement stmt = connection.createStatement();
+                stmt.execute(sql);
+                stmt.close();
+                System.out.println("Appointment created successfully.");
+            } else {
+                System.out.println("Double booking detected. Appointment creation failed.");
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public static boolean checkForDoubleBooking(String appointmentDate, String appointmentTime, String employee) {
+        try {
+            String sql = "SELECT * FROM AppointmentGUI WHERE appointmentDate = ? AND appointmentTime = ? AND employee = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, appointmentDate);
+            preparedStatement.setString(2, appointmentTime);
+            preparedStatement.setString(3, employee);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            return resultSet.next();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            return false;
         }
     }
 
@@ -269,15 +298,34 @@ public class DbSql {
         }
     }
 
-    public void bookAppointmentGUI(Appointment a) {
-        System.out.println(a);
+    /*public void bookAppointmentGUI(Appointment a) {
         try {
             String sql = "INSERT INTO AppointmentGUI (appointmentDate, appointmentTime,treatment,employee)";
             sql += "values (" + (a.getDate()) + ",'" + a.getTime() + "','" + a.getTreatment();
             sql += "','" + a.getEmployeename() + "')";
+
             Statement stmt = connection.createStatement();
             stmt.execute(sql);
             stmt.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }*/
+
+    public void bookAppointmentGUI(Appointment a) {
+        // Antager at a.getDate() returnerer en dato i formatet "yyyy-MM-dd"
+        String sql = "INSERT INTO AppointmentGUI (appointmentDate, appointmentTime, treatment, treatmentTime, employee, customer) VALUES (?, ?, ?, ?, ?, ?)";
+        try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+            // Konverterer den modtagne dato til en java.sql.Date
+            java.sql.Date sqlDate = java.sql.Date.valueOf(a.getAppointmentDate());
+            stmt.setDate(1, sqlDate);
+            stmt.setString(2, a.getAppointmentTime());
+            stmt.setString(3, a.getTreatment());
+            stmt.setString(4, a.getTreatmentTime());
+            stmt.setString(5, a.getEmployeename());
+            stmt.setString(6, a.getCustomername());
+            stmt.executeUpdate();
+            System.out.println("Appointment has been created!");
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -300,7 +348,6 @@ public class DbSql {
             }
         } catch (SQLException ex) {
             throw new RuntimeException(ex);
-
         }
     }
 
