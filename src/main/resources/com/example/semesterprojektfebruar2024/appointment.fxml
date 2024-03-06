@@ -4,6 +4,7 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -26,5 +27,7 @@
       <Button layoutX="483.0" layoutY="340.0" mnemonicParsing="false" onAction="#onOpretBookClickIBook" text="Book" />
       <Button layoutX="81.0" layoutY="328.0" mnemonicParsing="false" onAction="#backButtonLoggedIn" text="Back" />
       <Label fx:id="appointmentCreated" layoutX="355.0" layoutY="349.0" prefHeight="0.0" prefWidth="0.0" text="Label" />
+      <Label layoutX="175.0" layoutY="296.0" prefHeight="18.0" prefWidth="116.0" text="Write customername" />
+      <TextField layoutX="309.0" layoutY="293.0" />
    </children>
 </AnchorPane>

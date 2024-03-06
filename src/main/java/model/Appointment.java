@@ -7,8 +7,7 @@ import java.time.LocalTime;
 public class Appointment {
 
     private int appointmentID;
-    private String appointmentDate, appointmentTime, treatment, treatmentTime, appointmentAddress;
-
+    private String appointmentDate, appointmentTime, appointmentAddress, treatment, treatmentTime;
     private Customer c;
 
     private Employee e;
@@ -84,14 +83,6 @@ public class Appointment {
         this.employeename = employeename;
     }
 
-    public Customer getC() {
-        return c;
-    }
-
-    public void setC(Customer c) {
-        this.c = c;
-    }
-
     public Appointment(int appointmentID, String appointmentDate, String appointmentTime, String treatment, String treatmentTime, String appointmentAddress, Customer c, Employee e) {
         this.appointmentID = appointmentID;
         this.appointmentDate = appointmentDate;
@@ -101,6 +92,23 @@ public class Appointment {
         this.appointmentAddress = appointmentAddress;
         this.c = c;
         this.e = e;
+    }
+
+    public Appointment(int appointmentID, String appointmentDate, String appointmentTime, String treatment, String treatmentTime, String appointmentAddress) {
+        this.appointmentID = appointmentID;
+        this.appointmentDate = appointmentDate;
+        this.appointmentTime = appointmentTime;
+        this.treatment = treatment;
+        this.treatmentTime = treatmentTime;
+        this.appointmentAddress = appointmentAddress;
+    }
+
+    public Customer getC() {
+        return c;
+    }
+
+    public void setC(Customer c) {
+        this.c = c;
     }
 
     public String getEmployeename() {
@@ -120,15 +128,6 @@ public class Appointment {
     }
 
     public Appointment() {
-    }
-
-    public Appointment(int appointmentID, String appointmentDate, String appointmentTime, String treatment, String treatmentTime, String appointmentAddress) {
-        this.appointmentID = appointmentID;
-        this.appointmentDate = appointmentDate;
-        this.appointmentTime = appointmentTime;
-        this.treatment = treatment;
-        this.treatmentTime = treatmentTime;
-        this.appointmentAddress = appointmentAddress;
     }
 
     public String getTreatment() {
@@ -193,12 +192,11 @@ public class Appointment {
                 "appointmentID=" + appointmentID +
                 ", appointmentDate='" + appointmentDate + '\'' +
                 ", appointmentTime='" + appointmentTime + '\'' +
+                ", appointmentAddress='" + appointmentAddress + '\'' +
                 ", treatment='" + treatment + '\'' +
                 ", treatmentTime='" + treatmentTime + '\'' +
-                ", appointmentAddress='" + appointmentAddress + '\'' +
                 ", employeename='" + employeename + '\'' +
                 ", customername='" + customername + '\'' +
-                ", t=" + t +
                 '}';
     }
 }
