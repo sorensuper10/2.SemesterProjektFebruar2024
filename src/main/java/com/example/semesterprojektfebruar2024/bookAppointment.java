@@ -80,7 +80,7 @@ public class bookAppointment implements Initializable {
             }
         }
         dropdowntreatment.getItems().addAll("Cut hair", "Wash hair", "Shaving");
-        dropdownemployee.getItems().addAll("Monika", "SuperSøren", "Morten");
+        dropdownemployee.getItems().addAll("Monika", "Søren", "Morten");
         dropdowntreatmenttime.getItems().addAll("10 min", "15 min", "20 min", "30 min");
     }
 

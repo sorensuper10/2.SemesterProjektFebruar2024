@@ -21,7 +21,7 @@ public class Main {
         System.out.println("8. Search one appointment");
         System.out.println("9. Delete appointment");
         System.out.println("10. Book appointment");
-        System.out.println("11. Delete appointments after 30 seconds");
+        System.out.println("11. Delete appointments after 5 years");
         System.out.println("12. Search and edit appointment");
         System.out.println("13. Check if appointment is double booked in Database");
 
@@ -110,7 +110,7 @@ public class Main {
                     EditAppointment.main(args);
                     break;
                 case 13:
-                    db.createAppointment1(a);
+                    db.createAppointmentConsole(a);
                     break;
                 default:
                     System.exit(0);

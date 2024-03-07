@@ -84,7 +84,7 @@ public class DbSql {
             throwables.printStackTrace();
         }
     }
-    public void createAppointment1(Appointment a) {
+    public void createAppointmentConsole(Appointment a) {
         try {
             if (!checkForDoubleBooking(a.getAppointmentDate(), a.getAppointmentTime(), a.getEmployeename())) {
                 String sql = "insert into AppointmentGUI (appointmentID , appointmentDate, appointmentTime, treatment, treatmentTime,employee,customer)";
